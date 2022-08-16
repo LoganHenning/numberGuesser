@@ -3,27 +3,31 @@ let computerScore = 0;
 let currentRoundNumber = 1;
 
 // Write your code below:
+
 const generateTarget = () => {
-  return Math.floor((Math.random()*10));
-};
+	return Math.floor(Math.random()*10);
+}
 
-function compareGuesses(humanGuess, computerGuess, secretTarget){
-	const humanDiff = Math.abs(humanGuess - secretTarget);
-	const computerDiff = Math.abs(computerGuess - secretTarget);
-	if(humanDiff <= computerDiff){
+const compareGuesses = (humanGuess, computerGuess, targetNum) => {
+	let humanDiff = Math.abs(targetNum - humanGuess);
+	let computerDiff = Math.abs(targetNum - computerGuess);
+	if(humanDiff < computerDiff) {
 		return true;
-	}
-	else return false;
-};
+	} else if(humanDiff === computerDiff){
+		return true;
+	} else if(humanDiff > computerDiff){
+		return false;
+}
+}
 
-function updateScore(winner){
-	if(winner === 'human'){
-		humanScore = humanScore+1;
-	} else if(winner === 'computer'){
-		computerScore = computerScore +1;
+const updateScore = (winnerIs) => {
+	if(winnerIs === 'human'){
+		humanScore += 1;
+	} else if (winnerIs === 'computer'){
+		computerScore += 1;
 	}
-};
+}
 
-function advanceRound(){
-	currentRoundNumber = currentRoundNumber +1;
-};
+const advanceRound = () => {
+	currentRoundNumber += 1;
+}
